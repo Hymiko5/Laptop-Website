@@ -1,0 +1,371 @@
+.header
+{
+    background-color: #335599;  
+    line-height: 40px;  
+    font-weight: bold;
+    color: white;
+}
+.menu li
+{
+    list-style-type: none;
+    display: inline-block;
+}
+.header_1
+{
+    width: 95%;
+    margin: auto;
+}
+.list
+{
+    float: left;
+    padding-left: 10px;
+    font-size: 14px;
+    width: 215px;
+}
+.giohang
+{
+    background: orange;
+    border-radius: 15px;
+    line-height: 35px;
+    color: white;
+    text-align: center;
+    margin-top: 25px;
+}
+.header_3
+{
+    background-color: #0055cc; 
+}
+.product .col-lg-3 .sale
+{
+    background: orange;
+    position: absolute;
+    width: 50px;
+    line-height: 30px;
+    top: 10%;
+}
+.product .col-lg-3 .buy_hover
+{
+    background-color: white;
+    position: absolute;
+    width: 89%;
+    height: 70%;
+    top: 0%;
+    opacity: 0.6;
+    display: none;
+}
+.product .col-lg-3 .buy_hover_1
+{
+    background-color: white;
+    position: absolute;
+    width: 89%;
+    height: 20%;
+    top: 30%;
+    opacity: 0.8;
+    text-align: center;
+    display: none;
+}
+.product .col-lg-3 .buy_hover_1 span
+{
+    margin-top: 8%;
+    padding: 2%;
+}
+.product .col-lg-3:hover .buy_hover
+{
+    display: block;
+}
+.product .col-lg-3:hover .buy_hover_1
+{
+    display: block;
+}
+.new
+{
+    line-height: 30px;
+    width: 100px;
+    background-color: #0055cc;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 15px;
+    padding-top: 5px;
+    margin-top: -20px;
+}
+.xemthem
+{
+    background-color: #f5e50d; 
+    width: 120px; 
+    line-height: 30px; 
+    margin: auto; 
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.xemthem a {
+    color: blue;
+    text-decoration: none;
+}
+
+.thanhmenu {
+    font-weight: 500;
+}
+
+.khunganh {
+    width: 100%;
+}
+
+.khunganh img {
+    width: 100%;
+    padding-bottom: 10px;
+    height: 60%;
+}
+
+.danhmuc .tieudedm {
+    padding: 10px;
+    background: #0055cc;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-left: -15px;
+    
+}
+
+.duongke {
+    border-bottom: 3px solid rgb(241, 245, 31);
+    margin-left: 230px;
+    margin-top: -30px;
+    display: block;
+    width: 895px;
+}
+
+.hieuungchay {
+    height: 10%;
+    width: 100%;
+}
+
+.anhchay {
+    width: 100%;
+    height: 295px;
+}
+
+.thongtindm {
+    border: 1px solid rgba(0, 0, 0, 0.089);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.thongtindm .anhdanhmuc {
+    width: 60%;
+    height: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thongtindm .anhdanhmuc img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding-top: 5px;
+}
+
+.thongtindm a {
+    text-decoration: none;
+    text-align: center;
+    color: rgb(63, 63, 63);
+}
+
+.tendanhmuc {
+    margin-top: 10px;
+    display: block;
+}
+
+.khoidanhmuc {
+    text-align: center;
+    margin-left: 60px;
+}
+
+.xemtatca {
+    text-align: right;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.xemtatca a {
+    text-decoration: none;
+}
+
+.xemtatca a:hover {
+    color: orangered;
+}
+
+.chutintuc {
+    height: 50px;
+    vertical-align: center;
+}
+
+.motatintuc {
+    height: 50px;
+    margin-top: -10px;
+    font-size: 14px;
+    color: grey;
+}
+
+.khoitintuc {
+    margin-bottom: 30px;
+}
+
+.footer {
+    /* margin-left: 400px;
+    margin-right: 300px; */
+    display: block;
+    text-align: center;
+    height: 50px;
+}
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  .title {
+      margin-top: 100px;
+      text-align: center;
+  }
+  .detail-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    
+  }
+
+  .left-column {
+    width: 50%;
+    position: relative;
+    
+  }
+   
+  .right-column {
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  .left-column img {
+    width: 90%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+   
+  .left-column img.active {
+    opacity: 1;
+  }
+
+  .product-description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+  }
+  .product-description span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .product-description h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
+  }
+  .product-description p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+  }
+
+  .product-color {
+    margin-bottom: 30px;
+  }
+   
+  .color-choose div {
+    display: inline-block;
+  }
+   
+  .cable-choose {
+    margin-bottom: 20px;
+  }
+   
+  .cable-choose button {
+    border: 2px solid #E1E8EE;
+    border-radius: 6px;
+    padding: 13px 20px;
+    font-size: 14px;
+    color: #5E6977;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+  }
+   
+  .cable-choose button:hover,
+  .cable-choose button:active,
+  .cable-choose button:focus {
+    border: 2px solid #86939E;
+    outline: none;
+  }
+   
+  .cable-config {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+  }
+   
+  .cable-config a {
+    color: #358ED7;
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  .cable-config a:before {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(53, 142, 215, 0.5);
+    display: inline-block;
+    text-align: center;
+    line-height: 16px;
+    opacity: 0.5;
+    margin-right: 5px;
+  }
+  .product-price {
+    display: flex;
+    align-items: center;
+  }
+   
+  .product-price span {
+    font-size: 26px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 20px;
+  }
+   
+  .cart-btn {
+    display: inline-block;
+    background-color: #7DC855;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+  }
+  .cart-btn:hover {
+    background-color: #64af3d;
+  }

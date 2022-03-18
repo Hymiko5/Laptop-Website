@@ -1,0 +1,63 @@
+.container.title
+  ul.breadcrumb
+    li
+      a(href='/laptop') Laptop
+    li
+      span &gt;
+      a(href='/laptop-lenovo') Laptop Lenovo
+  h3 Laptop Lenovo IdeaPad 3 14ITL6 i5 1135G7/8GB/512GB/Win11 (82H700WAVN)
+  main.detail-container
+    // Left Column / Headphones Image
+    .left-column
+      img(data-image='black' src='/public/black-laptop.jpg' alt='')
+      img(data-image='blue' src='/public/blue-laptop.jpg' alt='')
+      img.active(data-image='red' src='/public/red-laptop.jpg' alt='')
+    // Right Column
+    .right-column
+      // Product Description
+      .product-description
+        span Headphones
+        h1 Beats EP
+        p
+          | The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance
+      // Product Configuration
+      .product-configuration
+        // Product Color
+        .product-color
+          span Color
+          .color-choose
+            div
+              input#red(data-image='red' type='radio' name='color' value='red' checked='')
+              label(for='red')
+                span
+            div
+              input#blue(data-image='blue' type='radio' name='color' value='blue')
+              label(for='blue')
+                span
+            div
+              input#black(data-image='black' type='radio' name='color' value='black')
+              label(for='black')
+                span
+        // Cable Configuration
+        .cable-config
+          span Cable configuration
+          .cable-choose
+            button Straight
+            button Coiled
+            button Long-coiled
+          a(href='#') How to configurate your headphones
+      // Product Pricing
+      .product-price
+        span 148$
+        a.cart-btn(href='#') Add to cart
+
+
+script.
+  $(document).ready(function() {
+  $('.color-choose input').on('click', function() {
+  var headphonesColor = $(this).attr('data-image');
+  $('.active').removeClass('active');
+  $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
+  $(this).addClass('active');
+  });
+  });
