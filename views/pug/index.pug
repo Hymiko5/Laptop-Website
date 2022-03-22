@@ -65,41 +65,7 @@ nav.navbar.navbar-expand-sm.sticky-top(style='background-color: #0055cc;')
           .input-group-append
             .input-group-text(style='background-color: white;')
               span.fas.fa-search
-.container
-  .row
-    .col-lg-9
-      .row
-        .hieuungchay.mt-3
-          #demo.carousel.slide(data-ride='carousel')
-            // Tạo chỉ số
-            ul.carousel-indicators
-              li.active(data-target='#demo' data-slide-to='0')
-              li(data-target='#demo' data-slide-to='1')
-            // Tạo trang trình bày
-            .carousel-inner
-              .carousel-item.active
-                img.anhchay(src='https://t010.gokisoft.com/uploads/2021/07/1-s-1584-banner-web.jpg' alt='Ảnh 1')
-              .carousel-item
-                img.anhchay(src='https://t010.gokisoft.com/uploads/2021/07/2-s-1584-banner-web.jpg' alt='Ảnh 2')
-            // Tạo trái, phải
-            a.carousel-control-prev(href='#demo' data-slide='prev')
-              span.carousel-control-prev-icon
-            a.carousel-control-next(href='#demo' data-slide='next')
-              span.carousel-control-next-icon
-      //
-        <div class="row mt-4">
-        <div class="col-lg-6">
-        <img src="https://t010.gokisoft.com/uploads/2021/07/1-s-1594-hinh-anh-quang-cao.jpg" width="100%" class="rounded">
-        </div>
-        <div class="col-lg-6">
-        <img src="https://t010.gokisoft.com/uploads/2021/07/1-s-1596-hinh-anh-quang-cao-2.jpg" width="100%" class="rounded">
-        </div>
-        </div>
-    .col-lg-3.mt-3
-      .khunganh
-        img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQojNcKt0H6jnKfXLUCQ1EH8AS0WjVxZjeaKg&usqp=CAU')
-        img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQojNcKt0H6jnKfXLUCQ1EH8AS0WjVxZjeaKg&usqp=CAU')
-.container
+
   
 //- include ./home.pug
 include ./detail.pug
@@ -194,12 +160,4 @@ include ./detail.pug
 script(src='https://code.jquery.com/jquery-2.2.1.min.js' integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=' crossorigin='anonymous')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
-script.
-  $(document).ready(function() {
-  $('.color-choose input').on('click', function() {
-  var headphonesColor = $(this).attr('data-image');
-  $('.active').removeClass('active');
-  $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
-  $(this).addClass('active');
-  });
-  });
+

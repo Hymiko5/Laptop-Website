@@ -1,63 +1,181 @@
-.container.title
-  ul.breadcrumb
-    li
-      a(href='/laptop') Laptop
-    li
-      span &gt;
-      a(href='/laptop-lenovo') Laptop Lenovo
-  h3 Laptop Lenovo IdeaPad 3 14ITL6 i5 1135G7/8GB/512GB/Win11 (82H700WAVN)
-  main.detail-container
-    // Left Column / Headphones Image
-    .left-column
-      img(data-image='black' src='/public/black-laptop.jpg' alt='')
-      img(data-image='blue' src='/public/blue-laptop.jpg' alt='')
-      img.active(data-image='red' src='/public/red-laptop.jpg' alt='')
-    // Right Column
-    .right-column
-      // Product Description
-      .product-description
-        span Headphones
-        h1 Beats EP
-        p
-          | The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance
-      // Product Configuration
-      .product-configuration
-        // Product Color
-        .product-color
-          span Color
-          .color-choose
-            div
-              input#red(data-image='red' type='radio' name='color' value='red' checked='')
-              label(for='red')
-                span
-            div
-              input#blue(data-image='blue' type='radio' name='color' value='blue')
-              label(for='blue')
-                span
-            div
-              input#black(data-image='black' type='radio' name='color' value='black')
-              label(for='black')
-                span
-        // Cable Configuration
-        .cable-config
-          span Cable configuration
-          .cable-choose
-            button Straight
-            button Coiled
-            button Long-coiled
-          a(href='#') How to configurate your headphones
-      // Product Pricing
-      .product-price
-        span 148$
-        a.cart-btn(href='#') Add to cart
+.bread
+  nav(style='$breadcrumb-divider: quote(">");' aria-label='breadcrumb')
+    ol.breadcrumb
+      li.breadcrumb-item
+        a(href='#') Laptop
+      li.breadcrumb-item.active(aria-current='page') Laptop lenovo
 
+.title.d-flex.justify-content-between
+  h5.product-title Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
+    a.product-link(href='#') visit our store
+  .product-rating
+    i.fas.fa-star
+    i.fas.fa-star
+    i.fas.fa-star
+    i.fas.fa-star
+    i.fas.fa-star-half-alt
+    span 4.7(21)
+.card-wrapper
+  .card.card-user
+    // card left
+    .product-imgs
+      .img-display
+        .img-showcase
+          img(src='public/red-laptop.jpg' alt='laptop image')
+          img(src='public/black-laptop.jpg' alt='laptop image')
+          img(src='public/blue-laptop.jpg' alt='laptop image')
+          img(src='' alt='shoe image')
+      .img-select
+        .img-item
+          a(href='#' data-id='1')
+            img(src='public/red-laptop.jpg' alt='laptop image')
+        .img-item
+          a(href='#' data-id='2')
+            img(src='public/black-laptop.jpg' alt='laptop image')
+        .img-item
+          a(href='#' data-id='3')
+            img(src='public/blue-laptop.jpg' alt='laptop image')
+        .img-item(hidden)
+          a(href='#' data-id='4')
+            img(src='' alt='laptop image')
+      .insurance
+        .policy 
+          ul.policy-list.d-flex.align-content-md-around.flex-wrap
+            li.icon
+              i.fas.fa-dumpster
+              p Hư gì đổi nấy 12 tháng tại 3077 siêu thị toàn quốc
+            li.icon
+              i.fas.fa-dumpster
+              p Bảo hành chính hãng laptop 2 năm
+            li.icon
+              i.fas.fa-dumpster
+              p Bộ sản phẩm gồm: Dây nguồn, Sách hướng dẫn, Bút cảm ứng, Thùng máy, Sạc Laptop Lenovo
+      .product-info
+        h5 Thông tin sản phẩm
+        h5 Lenovo Yoga Duet 7 13ITL6 i5 (82MA000PVN) là phiên bản laptop với thiết kế 2 trong 1 tiện lợi, cùng màn hình cảm ứng, hiệu năng được tối ưu nhờ CPU Intel thế hệ 11, giúp bạn xử lý nhanh gọn và chính xác mọi tác vụ.
+        h5 Thiết kế mỏng nhẹ, sang chảnh, đậm tính linh hoạt
+        p Laptop Lenovo Yoga Duet 7 được gia công tinh xảo với lớp vỏ kim loại chắc chắn, phủ một lớp màu xám tôn lên vẻ sang trọng. Máy chỉ mỏng 9.19 mm và nhẹ 1.1683 kg giúp bạn có thể linh hoạt để sử dụng ở mọi nơi, dễ dàng mang theo trong hành trang cá nhân thường nhật.
+        .more
+          img(src='public/lenovo.jpg' ).info-img
+          button.info-btn Xem thêm
+        h5 Đánh giá Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
+        .product-rating
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+          span 4.7(21)
+                
+    // card right
+    .product-content
+      .product-price
+        p.last-price
+          | Old Price: 
+          span $257.00
+        p.new-price
+          | New Price: 
+          span $249.00 (5%)
+      .product-detail
+        table.table.table-bordered.m-2
+          tbody
+            tr
+              td
+                h5 Khuyến mãi trị giá 100.000₫
+                p Giá và khuyến mãi dự kiến áp dụng đến 23:00 23/03
+            tr
+              td
+                p 1. Balo Laptop Lenovo (Hết quà hoàn tiền 100.000₫)
+                p 2. Giảm giá 10% cho Máy in, LCD khi mua kèm Laptop
+                p 3. Mua Office bản quyền giá chỉ từ 990,000đ 
+                  a(href='#') Xem chi tiết
+            tr
+              td
+                div Quà khuyến mãi
+                button.promotion
+                  figure
+                    img(src="public/balo.jpg")
+                  .promotion-info
+                    div Balo Lenovo
+                    div (khuyến mãi)
+            tr
+              td
+                p (*) Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%)
+                
+
+
+      .purchase-info
+        input(type='number' min='0' value='1')
+        button.btn(type='button')
+          | Add to Cart 
+          i.fas.fa-shopping-cart
+        button.btn(type='button') Compare
+      .social-links
+        p Share At: 
+        a(href='#')
+          i.fab.fa-facebook-f
+        a(href='#')
+          i.fab.fa-twitter
+        a(href='#')
+          i.fab.fa-instagram
+        a(href='#')
+          i.fab.fa-whatsapp
+        a(href='#')
+          i.fab.fa-pinterest
+      hr
+      .product-config
+        h4 Cấu hình Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
+        table.table.table-striped.ml-2
+          tbody
+            tr
+              td CPU:
+              td i5, 1135G7, 2.4GHz
+            tr
+              td RAM:
+              td 8 GBDDR4 (On board)3200 MHz
+            tr
+              td Ổ cứng:
+              td 512 GB SSD NVMe PCIe
+            tr
+              td Màn hình:
+              td 13 inchWQHD (2160x1350)
+            tr
+              td Card màn hình:
+              td Card tích hợpIntel Iris Xe
+            tr
+              td Cổng kết nối:
+              td Jack tai nghe 3.5 mmThunderbolt 4 USB-CUSB-C 3.2 Gen 1 (support data transfer and Always On)USB-C 3.2 Gen 1 (support data transfer and Power Delivery 3.0)
+            tr
+              td Đặc biệt:
+              td Có màn hình cảm ứngCó đèn bàn phím
+            tr
+              td Hệ điều hành:
+              td Windows 10 Home SL
+            tr
+              td Thiết kế:
+              td Vỏ kim loại
+            tr
+              td Kích thước, trọng lượng:
+              td Dài 297.4 mm - Rộng 207.4 mm - Dày 9.19 mm - Nặng 1.1683 kg
+            tr
+              td Thời điểm ra mắt:
+              td 2021
+            
 
 script.
-  $(document).ready(function() {
-  $('.color-choose input').on('click', function() {
-  var headphonesColor = $(this).attr('data-image');
-  $('.active').removeClass('active');
-  $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
-  $(this).addClass('active');
+  const imgs = document.querySelectorAll('.img-select a');
+  const imgBtns = [...imgs];
+  let imgId = 1;
+  imgBtns.forEach((imgItem) => {
+  imgItem.addEventListener('click', (event) => {
+  event.preventDefault();
+  imgId = imgItem.dataset.id;
+  slideImage();
   });
   });
+  function slideImage(){
+  const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+  document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+  }
+  window.addEventListener('resize', slideImage);
+
