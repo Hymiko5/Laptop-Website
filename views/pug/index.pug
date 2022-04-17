@@ -1,163 +1,35 @@
 doctype html
 head
-  title Title
+  title Laptop | Máy tính xách tay Giá rẻ
   // Required meta tags
   meta(charset='utf-8')
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
   // Bootstrap CSS
   link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
   link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous')
+  link(rel='stylesheet' href='/public/detail.css')
   link(rel='stylesheet' href='/public/style.css')
-.header
-  ul.menu
-    li.mr-4
-      i.fa.fa-mobile(aria-hidden='true')
-      |                 &Dstrok;i&#x1EC7;n tho&#x1EA1;i: 093 - 39 08 568
-    li
-      i.fa.fa-envelope(aria-hidden='true')
-      |                 Email: 
-      a.text-light(href='#' style='text-decoration: none;') ziczacgroup@gmail.com
-    li(style='margin-left: 480px;')
-      i.fas.fa-user
-      a.text-light(href='#' style='text-decoration: none;') &Dstrok;&abreve;ng k&yacute;
-      i.fas.fa-user
-      a.text-light(href='#' style='text-decoration: none;') &Dstrok;&abreve;ng nh&#x1EAD;p
-.row.header_1
-  .col-lg-3
-    img(src='/public/LOGO.GIF' width='100%')
-  .col-lg-7.mt-4
-    .list
-      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy1-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
-      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') Mi&#x1EC5;n ph&iacute; v&#x1EAD;n chuy&#x1EC3;n
-      p B&aacute;n k&iacute;nh 100km
-    .list
-      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy2-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
-      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') H&#x1ED7; tr&#x1EE3; 24/7
-      p
-        | Hotline: 
-        b 093 - 39 08 568
-    .list
-      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy3-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
-      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') Gi&#x1EDD; l&agrave;m vi&#x1EC7;c
-      p T2 - T7 Gi&#x1EDD; h&agrave;nh ch&iacute;nh
-  .col-lg-2
-    .giohang
-      span.fas.fa-shopping-bag
-      |                 Gi&#x1ECF; h&agrave;ng (0)
-nav.navbar.navbar-expand-sm.sticky-top(style='background-color: #0055cc;')
-  .container
-    ul.navbar-nav.thanhmenu
-      li.nav-item
-        a.nav-link.text-light(href='#') Trang ch&#x1EE7;
-      li.nav-item
-        a.nav-link.text-light(href='#') Rau An To&agrave;n
-      li.nav-item
-        a.nav-link.text-light(href='#') Th&#x1EE7;y H&#x1EA3;i S&#x1EA3;n
-      li.nav-item
-        a.nav-link.text-light(href='#') Th&#x1EF1;c Ph&#x1EA9;m T&#x1B0;&#x1A1;i S&#x1ED1;ng
-      li.nav-item
-        a.nav-link.text-light(href='#') C&ocirc;ng Th&#x1EE9;c M&oacute;n &Abreve;n
-      li.nav-item
-        a.nav-link.text-light(href='#') Li&ecirc;n h&#x1EC7;
-      form.form-inline(style='margin-left: 150px;')
-        .input-group
-          input.form-control(type='text' placeholder='Tìm kiếm')
-          .input-group-append
-            .input-group-text(style='background-color: white;')
-              span.fas.fa-search
+  link(rel='stylesheet' href='/public/register.css')
+  link(rel='stylesheet' href='/public/login.css')
+  script(src='https://code.jquery.com/jquery-2.2.1.min.js' integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=' crossorigin='anonymous')
 
   
-//- include ./home.pug
-include ./detail.pug
-.container.mt-5(style='margin-bottom: 30px;')
-  div(style='border-bottom: 2px solid orange;')
-  center
-    .new.justify-content
-      a(href='#' style='text-decoration: none; color: white;') TIN T&#x1EE8;C
-.container
-  .row.mt-4
-    .col-lg-4
-      .card.khoitintuc
-        img(src='https://t010.gokisoft.com/uploads/2021/07/759-mi-y.jpg' width='100%' height='80%')
-        .card-body(style='text-align: center;')
-          .card-title.chutintuc
-            strong M&igrave; &Yacute;
-          .card-text.mb-3.motatintuc N&#x1B0;&#x1EDB;c &Yacute; kh&ocirc;ng ch&#x1EC9; n&#x1ED5;i ti&#x1EBF;ng v&#x1EDB;i nh&#x1EEF;ng c&ocirc;ng tr&igrave;nh ki&#x1EBF;n tr&uacute;c c&#x1ED5; x&#x1B0;a h&ugrave;ng v&itilde;, n...
-          .xemthem
-            a(href='#') Xem th&ecirc;m
-    .col-lg-4
-      .card.khoitintuc
-        img(src='https://t010.gokisoft.com/uploads/2021/07/758-oc-huong-rang-muoi-ot-thom-lung.jpg' width='100%' style='height: 270px;')
-        .card-body(style='text-align: center;')
-          .card-title.chutintuc
-            strong &#x1ED0;c h&#x1B0;&#x1A1;ng rang mu&#x1ED1;i &#x1EDB;t th&#x1A1;m l&#x1EEB;ng
-          .card-text.mb-3.motatintuc &Dstrok;&#x1B0;&#x1EE3;c g&#x1ECD;i l&agrave; &#x1ED1;c h&#x1B0;&#x1A1;ng b&#x1EDF;i b&#x1EA3;n th&acirc;n lo&agrave;i &#x1ED1;c n&agrave;y t&#x1EA1;o ra m&#x1ED9;t h&#x1B0;&#x1A1;ng th&#x1A1;m c&#x1EF1;c ...
-          .xemthem
-            a(href='#') Xem th&ecirc;m
-    .col-lg-4
-      .card.khoitintuc
-        img(src='https://t010.gokisoft.com/uploads/2021/07/757-rau-xanh-tang-gia-manh-vi-troi-mua-nguoi-dan-noi-thanh-lao-dao.jpg' width='100%' style='height: 270px;')
-        .card-body(style='text-align: center;')
-          .card-title.chutintuc
-            strong Rau xanh t&abreve;ng gi&aacute; m&#x1EA1;nh v&igrave; tr&#x1EDD;i m&#x1B0;a, ng&#x1B0;&#x1EDD;i d&acirc;n n&#x1ED9;i th&agrave;nh lao &dstrok;ao
-          .card-text.mb-3.motatintuc Kho&#x1EA3;ng g&#x1EA7;n m&#x1ED9;t tu&#x1EA7;n nay, do &#x1EA3;nh h&#x1B0;&#x1EDF;ng c&#x1EE7;a nh&#x1EEF;ng c&#x1A1;n m&#x1B0;a l&#x1EDB;n k&eacute;o d&agrave;i li&ecirc;n t&#x1EE5;c ...
-          .xemthem
-            a(href='#') Xem th&ecirc;m
-.container-fluid(style='background-color: #0055cc')
-  .row
-    .col-lg-5.text-light.mt-3.ml-3
-      h5 LI&Ecirc;N H&#x1EC6;
-      p
-        span.fas.fa-map-marker-alt(style='color: orange;')
-        |                     C&#x1A1; s&#x1EDF; 1: C&#x1EED;a h&agrave;ng Ho&agrave;ng &Dstrok;&#x1EB7;ng H&agrave; Anh - H&#x1EA3;i D&#x1B0;&#x1A1;ng
-        br
-        span.fas.fa-map-marker-alt(style='color: orange;')
-        |                     C&#x1A1; s&#x1EDF; 2: C&#x1EED;a h&agrave;ng &Dstrok;&#x1ED7; Th&#x1ECB; Thu H&#x1B0;&#x1EDD;ng - V&iacute;nh Ph&uacute;c
-        br
-        span.fas.fa-map-marker-alt(style='color: orange;')
-        |                     C&#x1A1; s&#x1EDF; 1: C&#x1EED;a h&agrave;ng Nguy&#x1EC5;n Ph&#x1B0;ng Nam - S&#x1A1;n La
-        br
-        span.fas.fa-map-marker-alt(style='color: orange;')
-        |                     C&#x1A1; s&#x1EDF; 1: C&#x1EED;a h&agrave;ng &Dstrok;&#x1ED7; V&abreve;n Qu&acirc;n - H&agrave; N&#x1ED9;i
-      p
-        span.fas.fa-phone(style='color: orange;')
-        |                     093 - 39 08 568
-      p
-        span.fas.fa-envelope(style='color: orange;')
-        |                     ziczacgroup@gmail.com
-    .col-lg-2.text-light.mt-3
-      h5 TIN T&#x1EE8;C M&#x1EDA;I NH&#x1EA4;T
-      ul
-        li
-          a(href='#' style='text-decoration: none; color: white;') M&igrave; &Yacute;
-        li
-          a(href='#' style='text-decoration: none; color: white;') &#x1ED0;c h&#x1B0;&#x1A1;ng rang mu&#x1ED1;i &#x1EDB;t th&#x1A1;m l&#x1EEB;ng
-        li
-          a(href='#' style='text-decoration: none; color: white;') Rau xanh t&abreve;ng gi&aacute; m&#x1EA1;nh v&igrave; tr&#x1EDD;i m&#x1B0;a, ng&#x1B0;&#x1EDD;i d&acirc;n n&#x1ED9;i th&agrave;nh lao &dstrok;ao.
-    .col-lg-4.text-light.mt-3.ml-5
-      h5 S&#x1EA2;N PH&#x1EA8;M B&Aacute;N CH&#x1EA0;Y NH&#x1EA4;T
-      ul.list
-        li
-          a(href='#' style='text-decoration: none; color: white;') B&#x1EAF;p c&#x1EA3;i (Rau s&#x1EA1;ch)
-        li
-          a(href='#' style='text-decoration: none; color: white;') B&ograve; vi&ecirc;n CP
-        li
-          a(href='#' style='text-decoration: none; color: white;') C&aacute; ch&eacute;p
-        li
-          a(href='#' style='text-decoration: none; color: white;') T&ocirc;m s&uacute; lo&#x1EA1;i 2
-        li
-          a(href='#' style='text-decoration: none; color: white;') M&#x1ED3;ng t&#x1A1;i (Rau s&#x1EA1;ch)
-.container-fluid(style='background-color: #335599;')
-  .row.text-light.footer
-    p.pt-3.pl-3
-      | Copyright &copy; 2018 All rights reserved | Thi&#x1EBF;t K&#x1EBF; 
-      span.fas.fa-heart
-      |  b&#x1EDF;i 
-      a(href='#' style='color: white; text-decoration: none; font-weight: bold;') Nh&oacute;m 8
+body
+  include ./header.pug
+  if showHome 
+    include ./home.pug
+  if showLaptopDetail
+    include ./detail.pug
+  if showNews
+    include ./news.pug
+  if showRegister
+    include ./register.pug
+  if showLogin
+    include ./login.pug
+  include ./footer.pug
 // Optional JavaScript
 // jQuery first, then Popper.js, then Bootstrap JS
 // <script src="index.js"></script>
-script(src='https://code.jquery.com/jquery-2.2.1.min.js' integrity='sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=' crossorigin='anonymous')
+
 script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
-

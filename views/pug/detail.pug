@@ -6,98 +6,155 @@
       li.breadcrumb-item.active(aria-current='page') Laptop lenovo
 
 .title.d-flex.justify-content-between
-  h5.product-title Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
+  h5.product-title=laptop.laptopName
     a.product-link(href='#') visit our store
   .product-rating
-    i.fas.fa-star
-    i.fas.fa-star
-    i.fas.fa-star
-    i.fas.fa-star
-    i.fas.fa-star-half-alt
-    span 4.7(21)
+    if laptop.rate.rateNumber != 0
+      - n = (Math.round(laptop.rate.stars*2)/2);
+      .product-rating
+        while n > 0
+          if n === 0.5
+            i.fas.fa-star-half-alt
+            - n = 0
+          else
+            - n = n - 1
+            i.fas.fa-star
+        sup=" "+laptop.rate.rateNumber.match(/\d+/g)
 .card-wrapper
   .card.card-user
     // card left
-    .product-imgs
-      .img-display
+    .img-display
         .img-showcase
-          img(src='public/red-laptop.jpg' alt='laptop image')
-          img(src='public/black-laptop.jpg' alt='laptop image')
-          img(src='public/blue-laptop.jpg' alt='laptop image')
-          img(src='' alt='shoe image')
-      .img-select
-        .img-item
-          a(href='#' data-id='1')
-            img(src='public/red-laptop.jpg' alt='laptop image')
-        .img-item
-          a(href='#' data-id='2')
-            img(src='public/black-laptop.jpg' alt='laptop image')
-        .img-item
-          a(href='#' data-id='3')
-            img(src='public/blue-laptop.jpg' alt='laptop image')
-        .img-item(hidden)
-          a(href='#' data-id='4')
-            img(src='' alt='laptop image')
-      .insurance
-        .policy 
-          ul.policy-list.d-flex.align-content-md-around.flex-wrap
-            li.icon
-              i.fas.fa-dumpster
-              p Hư gì đổi nấy 12 tháng tại 3077 siêu thị toàn quốc
-            li.icon
-              i.fas.fa-dumpster
-              p Bảo hành chính hãng laptop 2 năm
-            li.icon
-              i.fas.fa-dumpster
-              p Bộ sản phẩm gồm: Dây nguồn, Sách hướng dẫn, Bút cảm ứng, Thùng máy, Sạc Laptop Lenovo
+          #carouselExampleControls.carousel.slide(data-ride='carousel')
+            .carousel-inner
+              each thumnail, index in laptop.thumnail
+                if index == 0
+                  .carousel-item.active
+                    img.d-block.w-100(src=thumnail alt='Laptop image')
+                else
+                  .carousel-item
+                    img.d-block.w-100(src=thumnail alt='Laptop image')
+            a.carousel-control-prev(href='#carouselExampleControls' data-slide='prev')
+              i.fa.fa-angle-left
+            a.carousel-control-next(href='#carouselExampleControls' data-slide='next')
+              i.fa.fa-angle-right
+        .img-select.d-flex.align-items-center
+          
+          .img-item
+            a(href='#' data-id='1')
+              img(src='../public/black-laptop.jpg' alt='laptop image')
+          
+        .insurance
+          .policy 
+            ul.policy-list.d-flex.justify-content-between.flex-wrap
+              li.icon
+                i.fas.fa-dumpster
+                p="Bộ sản phẩm gồm: " + laptop.policy.guide
+              
+    .product-imgs
       .product-info
         h5 Thông tin sản phẩm
-        h5 Lenovo Yoga Duet 7 13ITL6 i5 (82MA000PVN) là phiên bản laptop với thiết kế 2 trong 1 tiện lợi, cùng màn hình cảm ứng, hiệu năng được tối ưu nhờ CPU Intel thế hệ 11, giúp bạn xử lý nhanh gọn và chính xác mọi tác vụ.
-        h5 Thiết kế mỏng nhẹ, sang chảnh, đậm tính linh hoạt
-        p Laptop Lenovo Yoga Duet 7 được gia công tinh xảo với lớp vỏ kim loại chắc chắn, phủ một lớp màu xám tôn lên vẻ sang trọng. Máy chỉ mỏng 9.19 mm và nhẹ 1.1683 kg giúp bạn có thể linh hoạt để sử dụng ở mọi nơi, dễ dàng mang theo trong hành trang cá nhân thường nhật.
-        .more
-          img(src='public/lenovo.jpg' ).info-img
-          button.info-btn Xem thêm
-        h5 Đánh giá Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
-        .product-rating
-          i.fas.fa-star
-          i.fas.fa-star
-          i.fas.fa-star
-          i.fas.fa-star
-          i.fas.fa-star-half-alt
-          span 4.7(21)
-                
+        each promotion in laptop.laptopDetail.promotion
+          h5=promotion
+        each detail in laptop.laptopDetail.detail
+          if detail.img
+            img(src=detail.img ).info-img
+          else
+            p=detail
+          
+      .more
+        button.info-btn Xem thêm
+      .rating
+        h5="Đánh giá " + laptop.laptopName
+        if laptop.rate.rateNumber != 0
+          - n = (Math.round(laptop.rate.stars*2)/2);
+          .product-rating
+            each _, i in Array(5)
+              if n == 0.5
+                i.fas.fa-star-half-alt
+                - n = 0
+              else if n > 0 && n != 0.05
+                - n = n - 1
+                i.fas.fa-star
+              else
+                i.fas.fa-star.star-o
+            a(href="#")=laptop.rate.rateNumber
+        .container.mt-5.mb-5
+          .d-flex.row
+            .d-flex.flex-column
+              .d-flex.flex-row.align-items-center.text-left.comment-top.p-2.bg-white.border-bottom.px-4
+                  .d-flex.flex-row.align-items-center.align-content-center.post-title
+                    span.bdge.mr-1 video
+                    span.mr-2.comments=laptop.comments.length + " comments"
+                    span.mr-2.dot
+                    span=laptop.comments.updatedAt
+              .coment-bottom.bg-white.p-2.px-4(action="POST")
+                if user 
+                  form.d-flex.flex-row.add-comment-section.mt-4.mb-4(action="POST") 
+                    img.img-fluid.img-responsive.rounded-circle.mr-2(src=user.photo||'/public/avatar_author.jpg' width='38')
+                    input.form-control.mr-3(type='text' placeholder='Add comment')
+                    button.btn.btn-primary(type='button') Comment
+                each comment in laptop.comments
+                  .commented-section.mt-2
+                    .d-flex.flex-row.align-items-center.commented-user
+                      h5.mr-2=comment.user.userName
+                      span.dot.mb-1
+                      span.mb-1.ml-2=comment.updatedAt
+                    .comment-text-sm
+                      span=comment.content
+                    .reply-section
+                      .d-flex.flex-row.align-items-center.voting-icons
+                        i.fa.fa-sort-up.fa-2x.mt-3.hit-voting
+                        i.fa.fa-sort-down.fa-2x.mb-3.hit-voting
+                        span.ml-2 10
+                        span.dot.ml-2
+                        h6.ml-2.mt-1 Reply
+        
+
+     
     // card right
     .product-content
       .product-price
-        p.last-price
-          | Old Price: 
-          span $257.00
-        p.new-price
-          | New Price: 
-          span $249.00 (5%)
+        .price-wrap
+          | Giá: 
+          if laptop.onlinePrice != 0
+            .new-price
+              span=laptop.onlinePrice
+              sup.under đ
+            span *
+            .last-price
+              span=laptop.price
+              sup.under đ
+          else
+            .new-price
+              span=laptop.price
+              sup.under đ
       .product-detail
         table.table.table-bordered.m-2
           tbody
-            tr
-              td
-                h5 Khuyến mãi trị giá 100.000₫
-                p Giá và khuyến mãi dự kiến áp dụng đến 23:00 23/03
-            tr
-              td
-                p 1. Balo Laptop Lenovo (Hết quà hoàn tiền 100.000₫)
-                p 2. Giảm giá 10% cho Máy in, LCD khi mua kèm Laptop
-                p 3. Mua Office bản quyền giá chỉ từ 990,000đ 
-                  a(href='#') Xem chi tiết
+            if laptop.gift
+              tr
+                td
+                  h5="Khuyến mãi trị giá " + laptop.gift.amount
+                  p="Giá và khuyến mãi dự kiến áp dụng đến " + laptop.gift.expire
+              tr
+                if laptop.gift.items.length > 0
+                  td
+                    - n = 1
+                    each item in laptop.gift.items
+                      p=`${n}. ${item.title}`
+                      - n++;
             tr
               td
                 div Quà khuyến mãi
-                button.promotion
-                  figure
-                    img(src="public/balo.jpg")
-                  .promotion-info
-                    div Balo Lenovo
-                    div (khuyến mãi)
+                if laptop.gift.items.length > 0
+                  .gift-wrap.d-flex.justify-content-around
+                    each item in laptop.gift.items
+                      button.promotion
+                        figure
+                          img(src=item.img)
+                        .promotion-info
+                          div=item.title
             tr
               td
                 p (*) Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%)
@@ -124,58 +181,217 @@
           i.fab.fa-pinterest
       hr
       .product-config
-        h4 Cấu hình Laptop Lenovo Yoga Duet 7 13ITL6 i5 1135G7/8GB/512GB/Touch/Pen/Win10 (82MA000PVN)
+        h5="Cấu hình " + laptop.laptopName 
         table.table.table-striped.ml-2
           tbody
-            tr
-              td CPU:
-              td i5, 1135G7, 2.4GHz
-            tr
-              td RAM:
-              td 8 GBDDR4 (On board)3200 MHz
-            tr
-              td Ổ cứng:
-              td 512 GB SSD NVMe PCIe
-            tr
-              td Màn hình:
-              td 13 inchWQHD (2160x1350)
-            tr
-              td Card màn hình:
-              td Card tích hợpIntel Iris Xe
-            tr
-              td Cổng kết nối:
-              td Jack tai nghe 3.5 mmThunderbolt 4 USB-CUSB-C 3.2 Gen 1 (support data transfer and Always On)USB-C 3.2 Gen 1 (support data transfer and Power Delivery 3.0)
-            tr
-              td Đặc biệt:
-              td Có màn hình cảm ứngCó đèn bàn phím
-            tr
-              td Hệ điều hành:
-              td Windows 10 Home SL
-            tr
-              td Thiết kế:
-              td Vỏ kim loại
-            tr
-              td Kích thước, trọng lượng:
-              td Dài 297.4 mm - Rộng 207.4 mm - Dày 9.19 mm - Nặng 1.1683 kg
-            tr
-              td Thời điểm ra mắt:
-              td 2021
+            each val, key in laptop.configuration
+              tr.d-flex
+                td.col-4=`${key}:`
+                td.col-8=val
+        a.instructor.d-flex.justify-content-center Xem cấu hình chi tiết
+if laptop.plugin.length > 0
+  .related-wrapper             
+    .container
+      .row
+        .col-md-12
+          h2
+            | Phụ kiện thường mua cùng
+          #myCarousel.carousel.slide(data-ride='carousel' data-interval='0')
+            // Wrapper for carousel items
+            - plugin_size = 4
+            .carousel-inner
+              - for (let i = 0; i < laptop.plugin.length; i+=plugin_size){
+                - subArray = laptop.plugin.slice(i, i + plugin_size)
+                  if i == 0
+                    .carousel-item.active
+                      .row
+                        each plugin in subArray
+                            .col-lg-3.my-4
+                              .card.plugin-list
+                                a(href='#')
+                                  img.bg-success.lazyload(data-src=plugin.image height='auto' width='98%' )
+                                  .card-body.p-2.my-auto(style='text-align: left;')
+                                    a.text-dark=plugin.name
+                                    br
+                                    if plugin.onlyOnline
+                                      span(style="font-size: 0.8rem") Chỉ bán Online
+                                      br
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.onlinePrice
+                                        sup đ
+                                    else if plugin.oldPrice
+                                      span(style="font-size: 0.8rem") Online giá rẻ
+                                      br
+                                      span(style='padding-left: 5px')
+                                        del=plugin.oldPrice
+                                        sup đ
+                                      br
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.onlinePrice
+                                        sup đ
+                                    else
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.onlinePrice
+                                        sup đ
+                                    .plugin-info
+                                      if plugin.rateNumber != 0
+                                        - n = (Math.round(plugin.stars*2)/2);
+                                        .plugin-rating
+                                          each _, i in Array(5)
+                                            if n == 0.5
+                                              i.fas.fa-star-half-alt
+                                              - n = 0
+                                            else if n > 0 && n != 0.05
+                                              - n = n - 1
+                                              i.fas.fa-star
+                                            else
+                                              i.fas.fa-star.star-o
+                                          sup=" "+plugin.rateNumber 
+                          
+                  else
+                    .carousel-item
+                      .row
+                        each plugin in subArray
+                            .col-lg-3.my-4
+                              .card.plugin-list
+                                a(href='#')
+                                  img.bg-success.lazyload(data-src=plugin.image height='auto' width='98%' )
+                                  .card-body.p-2.my-auto(style='text-align: left;')
+                                    a.text-dark=plugin.name
+                                    if plugin.onlyOnline
+                                      span(style="font-size: 0.8rem") Chỉ bán Online
+                                      br
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.onlinePrice
+                                        sup đ
+                                    else if plugin.oldPrice
+                                      span(style="font-size: 0.8rem") Online giá rẻ
+                                      br
+                                      span(style='padding-left: 5px')
+                                        del=plugin.oldPrice
+                                        sup đ
+                                      br
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.onlinePrice
+                                        sup đ
+                                    else
+                                      span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=plugin.price
+                                        sup đ
+                                    .plugin-info
+                                      if plugin.rateNumber != 0
+                                        - n = (Math.round(plugin.stars*2)/2);
+                                        .plugin-rating
+                                          each _, i in Array(5)
+                                            if n == 0.5
+                                              i.fas.fa-star-half-alt
+                                              - n = 0
+                                            else if n > 0 && n != 0.05
+                                              - n = n - 1
+                                              i.fas.fa-star
+                                            else
+                                              i.fas.fa-star.star-o
+                                          sup=" "+plugin.rateNumber
+                          
+
+                
+              
+
+              - }
+          
             
+          // Carousel controls
+          a.carousel-control-prev(href='#myCarousel' data-slide='prev')
+            i.fa.fa-angle-left
+          a.carousel-control-next(href='#myCarousel' data-slide='next')
+            i.fa.fa-angle-right
+            
+if laptop.relateProduct.length > 0
+  .related-wrapper             
+    .container
+      .row
+        .col-md-12
+          h2
+            | Phụ kiện thường mua cùng
+          //- #myCarousel.carousel.slide(data-ride='carousel' data-interval='0')
+          //-   // Wrapper for carousel items
+          //-   - product_size = 4
+          //-   .carousel-inner
+          //-     - for (let i = 0; i < laptop.plugin.length; i+=product_size){
+          //-       - subArray = laptop.plugin.slice(i, i + product_size)
+          //-         if i == 0
+          //-           .carousel-item.active
+          //-             .row
+          //-               each product in subArray
+          //-                   .col-sm-3.carousel-border
+          //-                     .thumb-wrapper
+          //-                       .img-box
+          //-                         img.img-fluid(src= alt='')
+          //-                       .thumb-content
+          //-                         h4 Apple iPad
+          //-                         p.item-price
+          //-                           strike $400.00
+          //-                           span $369.00
+          //-                         .star-rating
+          //-                           ul.list-inline
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star.star-o
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star.star-o
+          //-                         a.btn.btn-primary(href='#') Add to Cart
+                          
+          //-         else
+          //-           .carousel-item
+          //-             .row
+          //-               each plugin in subArray
+          //-                   .col-sm-3.carousel-border
+          //-                     .thumb-wrapper
+          //-                       .img-box
+          //-                         img.img-fluid(src='/examples/images/products/ipad.jpg' alt='')
+          //-                       .thumb-content
+          //-                         h4 Apple iPad
+          //-                         p.item-price
+          //-                           strike $400.00
+          //-                           span $369.00
+          //-                         .star-rating
+          //-                           ul.list-inline
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star.star-o
+          //-                             li.list-inline-item
+          //-                               i.fas.fa-star.star-o
+          //-                         a.btn.btn-primary(href='#') Add to Cart
+                          
 
+                
+              
+
+          //-     - }
+          
+            
+          //- // Carousel controls
+          //- a.carousel-control-prev(href='#myCarousel' data-slide='prev')
+          //-   i.fa.fa-angle-left
+          //- a.carousel-control-next(href='#myCarousel' data-slide='next')
+          //-   i.fa.fa-angle-right
+              
 script.
-  const imgs = document.querySelectorAll('.img-select a');
-  const imgBtns = [...imgs];
-  let imgId = 1;
-  imgBtns.forEach((imgItem) => {
-  imgItem.addEventListener('click', (event) => {
-  event.preventDefault();
-  imgId = imgItem.dataset.id;
-  slideImage();
-  });
-  });
-  function slideImage(){
-  const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-  document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-  }
-  window.addEventListener('resize', slideImage);
-
+  const images = document.querySelectorAll(".lazyload");
+  let imageOptions = {};
+  let observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+  if(!entry.isIntersecting) return;
+  const image = entry.target;
+  const newURL = image.getAttribute('data-src');
+  image.src = newURL;
+  observer.unobserve(image);
+  })
+  }, imageOptions);
+  images.forEach(image => {
+  observer.observe(image)
+  })

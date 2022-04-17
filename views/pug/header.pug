@@ -1,0 +1,83 @@
+.header
+
+.row.header_1
+  .col-lg-3
+    img(src='/public/LOGO.GIF' width='100%')
+  .col-lg-7.mt-4
+    .list
+      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy1-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
+      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') Mi&#x1EC5;n ph&iacute; v&#x1EAD;n chuy&#x1EC3;n
+      p B&aacute;n k&iacute;nh 100km
+    .list
+      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy2-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
+      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') H&#x1ED7; tr&#x1EE3; 24/7
+      p
+        | Hotline: 
+        b 093 - 39 08 568
+    .list
+      img(src='https://t010.gokisoft.com/themes/freshfood/img/cache/catalog/services/policy3-0x0.png' width='40px' height='40px' style='float: left; margin-right: 10px;')
+      a.text-dark(href='#' style='font-weight: bold; text-decoration: none;') Gi&#x1EDD; l&agrave;m vi&#x1EC7;c
+      p T2 - T7 Gi&#x1EDD; h&agrave;nh ch&iacute;nh
+  .col-lg-2
+    .giohang
+      span.fas.fa-shopping-bag
+      |                 Gi&#x1ECF; h&agrave;ng (0)
+
+nav.navbar.navbar-expand-xl.navbar-dark.bg-dark
+  a.navbar-brand(href='#')
+    i.fa.fa-cube
+    | Brand
+    b Name
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse')
+    span.navbar-toggler-icon
+  // Collection of nav links, forms, and other content for toggling
+  #navbarCollapse.collapse.navbar-collapse.justify-content-start
+    form.navbar-form.form-inline
+      .input-group.search-box
+        input#search.form-control(type='text' placeholder='Search here...')
+        span.input-group-addon
+          i.fas.fa-search
+    .navbar-nav.ml-auto
+      a.nav-item.nav-link.active(href='#')
+        i.fa.fa-home
+        span Home
+      .nav-item.dropdown
+        a.nav-item.nav-link.dropdown-toggle.user-action(href='#' data-toggle='dropdown')
+          i.fas.fa-laptop
+          span Laptop
+        .dropdown-menu
+          each laptopType in laptopTypes
+            a.dropdown-item(href=`laptop?g=${laptopType.name.replaceAll(' ', '-')}`)
+              span=laptopType.name
+      a.nav-item.nav-link(href='#')
+        i.fas.fa-keyboard
+        span Plugin
+      a.nav-item.nav-link(href='#')
+        i.fa.fa-envelope
+        span Mesages
+      a.nav-item.nav-link(href='#')
+        i.fa.fa-bell
+        span Notifications
+      .nav-item.dropdown
+        if user
+          a.nav-item.nav-link.dropdown-toggle.user-action(href='#' data-toggle='dropdown')
+            img.avatar(src=user.photo)
+            span=user.userName
+            b.caret
+          .dropdown-menu
+            a.dropdown-item(href='#')
+              i.fa.fa-user-o
+              |  Profile
+            a.dropdown-item(href='#')
+              i.fa.fa-calendar-o
+              |  Calendar
+            a.dropdown-item(href='#')
+              i.fa.fa-sliders
+              |  Settings
+            .divider.dropdown-divider
+            a.dropdown-item(href='/logout')
+              i.fas.fa-sign-out
+              |  Logout
+        else
+          a.btn.btn-secondary(href='/login')
+            span Login

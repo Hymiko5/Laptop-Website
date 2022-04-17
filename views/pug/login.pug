@@ -1,0 +1,40 @@
+.card.bg-light
+  article.card-body.mx-auto(style='max-width: 600px;')
+    h4.card-title.mt-3.text-center.account-title Login
+    p
+      a.btn.btn-block.btn-twitter(href='/auth/google')
+        i.fab.fa-google
+        |  &nbsp; Login via Google
+      a.btn.btn-block.btn-facebook(href='/auth/facebook')
+        i.fab.fa-facebook-f
+        |  &nbsp; Login via facebook
+    p.divider-text
+      span.bg-light OR
+    form(action='/login', method='post', id='login-form' )
+      .form-group
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-envelope
+          input.form-control.login-input(name='email' placeholder='Email' type='email' class ='email' Required)
+        small#emailHelp.form-text.text-danger
+      .form-group
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-lock
+          input.form-control.login-input(name='password' class='password' placeholder='Password' type='password' Required)
+        small#passwordHelp.form-text.text-danger
+      .form-group.form-check
+        label.form-check-label
+          input.form-check-input(type='checkbox' name='remember')
+          |  Remember me
+      .form-group
+        button.btn.btn-primary.btn-block(type='submit')  Login
+      // form-group//
+      p.text-center
+        | Don't have an account?
+        a.log-in-btn(href='/register') Sign Up
+      p.text-center
+        a.log-in-btn(href='#') Forget your password?  
+
+script(src='./public/login.js')
+    

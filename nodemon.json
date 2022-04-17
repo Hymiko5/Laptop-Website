@@ -9,7 +9,9 @@
         "./views/pug/*",
         "./server.js",
         "./routes/*",
-        "./public/*"
+        "./public/*",
+        "./controllers/SiteController.js",
+        "./models/*"
     ],
     "env": {
         "NODE_ENV": "development"
