@@ -1,0 +1,99 @@
+if result.laptops.length > 0
+  .container.product
+    .report_text.mt-4
+      h1
+        | Tìm thấy 
+        strong=result.total
+        |  kết quả.
+    .row
+      each laptop in result.laptops
+        .col-lg-3.my-4
+          .card.card-list
+            a(href='/laptop/' + laptop.slug)
+              img.bg-success.lazyload(data-src=laptop.thumnail[0] height='auto' width='98%' )
+              .card-body.p-2.my-auto(style='text-align: left;')
+                .text-dark(href='#')=laptop.shortName
+                .item-compare
+                  span=laptop.configuration.RAM.split(',')[0]
+                  span=laptop.configuration["Ổ cứng"]
+                if !laptop.isBusiness
+                  span(style="font-size: 0.8rem") Ngừng kinh doanh
+                else if laptop.onlinePrice !== "0"
+                  span(style="font-size: 0.8rem") Online giá rẻ
+                  br
+                  span(style='padding-left: 5px')
+                    del=laptop.price
+                    sup đ
+                  br
+                  span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=laptop.onlinePrice
+                    sup đ
+                else
+                  span(style='font-weight: bold; font-size: 18px; padding-right: 5px;')=laptop.price
+                    sup đ
+                if laptop.gift.amount && laptop.isBusiness
+                  p.item-gift Quà 
+                    b=laptop.gift.amount
+                      sup đ
+            .item-info
+              if laptop.rate.rateNumber != 0
+                - abcdefu = 123;
+                - n = (Math.round(laptop.rate.stars*2)/2);
+                .product-rating
+                  each _, i in Array(5)
+                    if n == 0.5
+                      i.fas.fa-star-half-alt
+                      - n = 0
+                    else if n > 0 && n != 0.05
+                      - n = n - 1
+                      i.fas.fa-star
+                    else
+                      i.fas.fa-star.star-o
+                  sup=" "+laptop.rate.rateNumber.match(/\d+/g)
+                  //- while n > 0
+                  //-   if n === 0.5
+                  //-     i.fas.fa-star-half-alt
+                  //-     - n = 0
+                  //-   else
+                  //-     - n = n - 1
+                  //-     i.fas.fa-star
+                  //- sup=" "+laptop.rate.rateNumber.match(/\d+/g)
+              .utility
+                p
+                  - regex = /\(([^)]+)\)/;
+                  .box-config
+                    if laptop.configuration["Màn hình"]
+                      span.config-name M.HÌNH
+                      span=laptop.configuration["Màn hình"].replace(regex, '')
+                  .box-config
+                    span.config-name CPU
+                    span=laptop.configuration["CPU"]
+                  .box-config
+                    if laptop.configuration["Card màn hình"]
+                      span.config-name Card 
+                      span=laptop.configuration["Card màn hình"].replace(regex, '').split(',')[1].trim()
+          .sale=laptop.installment
+      if result.remain > 0
+        button.btn.btn-primary.d-flex.justify-content-center.align-items-center.more-btn(type='button')="Còn " + result.remain + " sản phẩm "
+      
+
+script.
+  const images = document.querySelectorAll(".lazyload");
+  let imageOptions = {};
+  let observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+  if(!entry.isIntersecting) return;
+  const image = entry.target;
+  const newURL = image.getAttribute('data-src');
+  image.src = newURL;
+  observer.unobserve(image);
+  })
+  }, imageOptions);
+  images.forEach(image => {
+  observer.observe(image)
+  })
+
+script.
+  var pageIndex = 0;
+
+
+

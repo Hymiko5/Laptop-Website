@@ -12,7 +12,7 @@ class AuthController {
     }
     // [GET] /auth/success
     authSuccess(req, res) {
-        res.send(req.user);
+        res.send(req.user); 
     }
     // [GET] /register
     register(req, res) {

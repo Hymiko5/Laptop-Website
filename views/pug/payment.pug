@@ -1,0 +1,47 @@
+button.btn.btn-primary.launch(type='button' data-toggle='modal' data-target='#staticBackdrop')
+  i.fa.fa-rocket
+  |  Pay Now
+// Modal
+#staticBackdrop.modal.fade(data-backdrop='static' data-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-body
+        .text-right
+          i.fa.fa-close.close(data-dismiss='modal')
+        .tabs.mt-3
+          ul#myTab.nav.nav-tabs(role='tablist')
+            li.nav-item(role='presentation')
+              a#visa-tab.nav-link.active(data-toggle='tab' href='#visa' role='tab' aria-controls='visa' aria-selected='true')
+                img(src='https://i.imgur.com/sB4jftM.png' width='80')
+            li.nav-item(role='presentation')
+              a#paypal-tab.nav-link(data-toggle='tab' href='#paypal' role='tab' aria-controls='paypal' aria-selected='false')
+                img(src='https://i.imgur.com/yK7EDD1.png' width='80')
+          #myTabContent.tab-content
+            #visa.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='visa-tab')
+              .mt-4.mx-4
+                .text-center
+                  h5 Credit card
+                .form.mt-3
+                  .inputbox
+                    input.form-control(type='text' name='name' required='required')
+                    span Cardholder Name
+                  .inputbox
+                    input.form-control(type='text' name='name' min='1' max='999' required='required')
+                    span Card Number
+                    i.fa.fa-eye
+                  .d-flex.flex-row
+                    .inputbox
+                      input.form-control(type='text' name='name' min='1' max='999' required='required')
+                      span Expiration Date
+                    .inputbox
+                      input.form-control(type='text' name='name' min='1' max='999' required='required')
+                      span CVV
+                  .px-5.pay
+                    button.btn.btn-success.btn-block Add card
+            #paypal.tab-pane.fade(role='tabpanel' aria-labelledby='paypal-tab')
+              .px-5.mt-5
+                .inputbox
+                  input.form-control(type='text' name='name' required='required')
+                  span Paypal Email Address
+                .pay.px-5
+                  button.btn.btn-primary.btn-block Add paypal

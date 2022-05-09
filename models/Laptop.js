@@ -18,10 +18,12 @@ const laptopSchema = new mongoose.Schema({
     brand: { type: String, require: true },
     isBusiness: { type: Boolean, required: true },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    quantity: { type: Number, required: true, min: 0 },
     slug: { type: String, slug: 'shortName', unique: true },
 }, { timestamps: true })
 
 
+laptopSchema.index({ laptopName: 'text' })
 const Laptop = mongoose.model('Laptop', laptopSchema);
 
 

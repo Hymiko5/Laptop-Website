@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         displayName: String,
         email: String,
         photo: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true  })
 

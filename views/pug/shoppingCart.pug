@@ -1,0 +1,360 @@
+if cart.status != "empty"
+  .container.zero-margin
+    .wrapper.wrapper-content.animated.fadeInRight
+      .row.d-flex.justify-content-center
+        .col-md-8
+          nav(aria-label='breadcrumb')
+              ol.breadcrumb
+                li.breadcrumb-item.active(aria-current='page')
+                  a(href='/laptop-ldp') < Mua thêm sản phẩm khác
+          form
+            if cart.products.length > 0
+              -
+                function moneyFormater(money) {
+                return (Math.round(money * 100) / 100).toLocaleString().replace(/,/g,'.');
+                }
+              each product in cart.products
+                .ibox.product-selector
+                  .ibox-content
+                    .table-responsive
+                      table.table.shoping-cart-table
+                        tbody
+                          tr
+                            td(width='90')
+                              img.cart-product-imitation(src=product.productDetail.thumnail)
+                              .m-t-sm
+                                a.text-muted.remove-product
+                                  i.fa.fa-trash
+                                  |  Remove
+                            td.desc
+                              h3
+                                a.ellipsis-display.text-navy(href=product.slug)=product.productDetail.laptopName
+                              //- p.small
+                              //-   | There are many variations of passages of Lorem Ipsum available
+                              dl.small.m-b-none.promotion-container
+                                label.extend.active Bộ sản phẩm
+                                .cart-promotion(style='display: none')=product.productDetail.policy.guide
+                                label.collapse(style='display: none') Thu gọn
+                            td
+                              if product.productDetail.onlincePrice == 0 || !product.productDetail.onlinePrice
+                                .highlight
+                                  span=moneyFormater(product.productDetail.price)
+                                  sup đ
+                              else
+                                .highlight
+                                  span=moneyFormater(product.productDetail.onlinePrice)
+                                  sup đ
+                                span
+                                  s.text-muted=moneyFormater(product.productDetail.price)
+                                  sup đ
+                              .d-flex.justify-content-end.align-items-end.quantity-container.mt-auto.quantity-selector(data-id=product.productDetail._id)
+                                span.input-group-btn.btn-border.minus-container
+                                  button.btn.btn-default.btn-number.minus(type='button' disabled='disabled' data-type='minus' data-field='quant[1]')
+                                    span
+                                      i.fas.fa-minus
+                                input.form-control.input-number(type='text' name='quant[1]' value=product.quantity)
+                                //-  onfocusout=`updateProduct("${product.productDetail._id}")`
+                                span.input-group-btn.btn-border.plus-container
+                                  button.btn.btn-default.btn-number.plus(type='button' data-type='plus' data-field='quant[1]')
+                                    span
+                                      i.fas.fa-plus
+                                input.hidden-quantity(type='hidden' value=product.quantity)
+          .total-provisional.d-flex.justify-content-between.table
+            span.pull-right
+              | Tạm tính (
+              strong.total-quantity=cart.totalQuantity
+              span  Sản phẩm:
+              | )
+            h4.total-price=moneyFormater(cart.total)
+              sup đ
+          .ibox-cal
+            .form-group
+              label(for='') Thông tin khách hàng
+              br
+              .form-check.form-check-inline
+                input#male.form-check-input(type='radio' name='gender' value='male' checked)
+                label.form-check-label(for='male') Anh
+              .form-check.form-check-inline
+                input#female.form-check-input(type='radio' name='gender' value='female')
+                label.form-check-label(for='female') Chị
+            .form-group.deliver-part
+              label(for='') Chọn cách thức nhận hàng
+              br
+              .form-check.form-check-inline
+                input#shipping.form-check-input.shipping-checkbox(type='radio' name='deliver-way' value='shipping' checked)
+                label.form-check-label(for='shipping') Giao tận nơi
+              .form-check.form-check-inline
+                input#direct.form-check-input(type='radio' name='deliver-way' value='direct')
+                label.form-check-label(for='direct') Nhận tại siêu thị
+            .gray-form.address-part
+              .form-group.p-3
+                label(for='') Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có)
+                .form-row
+                  .form-group.col
+                    select#provincial.form-control
+                      option(selected value='Hà Nội') Hà nội
+                  .form-group.col
+                    select#district.form-control
+                      option(selected value='Bắc Từ Liêm') Quận Bắc Từ Liêm
+                .form-row
+                  .form-group.col
+                    select#ward.form-control
+                      option(selected value='Phúc Diễn') Phường Phúc Diễn
+                  .form-group.col
+                    input.form-control(type='text' name='address' placeholder='Số nhà, tên đường')
+            .form-group
+              input#formGroupExampleInput.form-control(type='text' placeholder='Yêu cầu khác (không bắt buộc)')
+            .form-group
+              .form-check
+                input#defaultCheck1.form-check-input(type='checkbox' name='conditions' value='others receive')
+                label.form-check-label(for='defaultCheck1')
+                  | Gọi người khác nhận hàng (nếu có)
+              .form-check
+                input#defaultCheck2.form-check-input(type='checkbox' name='conditions' value='instruction')
+                label.form-check-label(for='defaultCheck2')
+                  | Hướng dẫn sử dụng, giải đáp thắc mắc sản phẩm
+              .form-check
+                input#defaultCheck3.form-check-input(type='checkbox' name='conditions' value='bill')
+                label.form-check-label(for='defaultCheck3')
+                  | Xuất hóa đơn công ty
+          .ibox-content
+            .form-row.pt-3
+              .form-group.col-md-6
+                .discount-toggle
+                  i.fas.fa-badge-dollar
+                  label Sử dụng mã giảm giá 
+            .gray-form.discount-input
+                .form-group.p-3
+                  .form-row.align-items-center
+                    .form-group.col-md-10
+                      input.form-control(type='text' name='coupon' placeholder='Nhập mã giảm giá/ Phiếu mua hàng')
+                    .form-group.col-md-2.d-flex.justify-content-center
+                      button.btn.btn-primary.my-1.apply-btn(type='submit') Áp dụng
+          .ibox-content
+            .total-cal.d-flex.justify-content-between.mt-2.mb-3
+              span.pull-right
+                strong Tổng tiền
+              h4.total-price=moneyFormater(cart.total)
+                sup đ
+            button.btn.btn-primary.changed-btn.payment-btn(type='button')
+              i.fa.fa.fa-shopping-cart
+              |  Đặt hàng
+            p.d-flex.justify-content-center.align-items.center
+              small.form-text.text-muted
+                | Chị có thể chọn hình thức thanh toán sau khi đặt hàng
+
+  .policy.mb-3
+    small.d-flex.justify-content-center.align-items-center
+      | Bằng cách đặt hàng, bạn đồng ý với Điều khoản sử dụng của Thegioididong
+else
+  .cart-empty
+    .card-body-empty
+      .col-sm-12.empty-cart-cls.text-center
+        img.img-fluid.mb-4.mr-3(src='https://i.imgur.com/dCdflKN.png' width='130' height='130')
+        h3
+          strong Your Cart is Empty
+        h4 Không có sản phẩm nào trong giỏ hàng
+        a.btn.btn-primary.btn-primary-custom.cart-btn-transform.m-3.a-custom(href='/laptop-ldp' data-abc='true') Về trang chủ
+        p Khi cần trợ giúp vui lòng gọi 093 - 39 08 568 (7h30 - 22h)
+
+
+#staticBackdrop.modal.fade(data-backdrop='static' data-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-body
+        .text-right
+          i.fas.fa-times.close(data-dismiss='modal')
+        .tabs.mt-3
+          ul#myTab.nav.nav-tabs(role='tablist')
+            li.nav-item(role='presentation')
+              a#visa-tab.nav-link.active(data-toggle='tab' href='#visa' role='tab' aria-controls='visa' aria-selected='true')
+                img(src='https://i.imgur.com/sB4jftM.png' width='80')
+            li.nav-item(role='presentation')
+              a#paypal-tab.nav-link(data-toggle='tab' href='#paypal' role='tab' aria-controls='paypal' aria-selected='false')
+                img(src='https://i.imgur.com/yK7EDD1.png' width='80')
+          #myTabContent.tab-content
+            #visa.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='visa-tab')
+              .mt-4.mx-4
+                .text-center
+                  h5 Credit card
+                .form.mt-3
+                  .inputbox
+                    input.form-control(type='text' name='name' required='required')
+                    span Cardholder Name
+                  .inputbox
+                    input.form-control(type='text' name='name' min='1' max='999' required='required')
+                    span Card Number
+                    i.fa.fa-eye
+                  .d-flex.flex-row
+                    .inputbox
+                      input.form-control(type='text' name='name' min='1' max='999' required='required')
+                      span Expiration Date
+                    .inputbox
+                      input.form-control(type='text' name='name' min='1' max='999' required='required')
+                      span CVV
+                  .px-5.pay
+                    button.btn.btn-success.btn-block Add card
+                    a.close-modal(data-dismiss="modal") Close
+            #paypal.tab-pane.fade(role='tabpanel' aria-labelledby='paypal-tab')
+              .px-5.mt-5
+                .inputbox
+                  input.form-control(type='text' name='name' required='required')
+                  span Paypal Email Address
+                .pay.px-5
+                  button.btn.btn-primary.btn-block Add paypal
+                  a.close-modal(data-dismiss="modal") Close
+
+
+script(src='./public/jquerySetup.js')
+script.
+      $(document).ready(function() {
+        //- $(this).on('contextmenu', function(e) {
+        //-   e.preventDefault();
+        //- })
+        const list = $('.promotion-container');
+        const deliver = $('.deliver-part');
+        const discount = $('.discount-toggle');
+        const quantitySelector = $('.quantity-selector');
+        const productSelector = $('.product-selector');
+        const paymentBtn = $('.payment-btn');
+        list.each(function() {
+          $(this).children('.extend').click(() => {
+            $(this).children('.extend').toggle();
+            $(this).children('.collapse').toggle();
+            $(this).children('.cart-promotion').toggle();
+          })
+          $(this).children('.collapse').click(() => {
+            $(this).children('.extend').toggle();
+            $(this).children('.collapse').toggle();
+            $(this).children('.cart-promotion').toggle();
+          })
+        })
+        productSelector.each(function() {
+          const productId = $(this).find('.quantity-selector').data("id");
+          $(this).find('.remove-product').click(() => {
+            removeProduct.call(this, productId)
+          });
+        })
+        quantitySelector.each(function() {
+          const productId = $(this).data("id");
+          $(this).children('.input-number').inputFilter((value) => {
+            return /^[1-5]{0,1}$/.test(value);
+          })
+          $(this).children('.input-number').on('focusout',() => {
+            const oldValue = $(this).children('.hidden-quantity').val();
+            const currentValue = $(this).children('.input-number').val();
+            updateProduct.call(this,productId, oldValue, currentValue);
+          })
+          $(this).children('.minus-container').click(() => {
+            setTimeout(() => {
+            const oldValue = $(this).children('.hidden-quantity').val();
+            const currentValue = parseInt($(this).children('.input-number').val()) -1;
+            if(currentValue > 0 ){
+              $(this).children('.input-number').val(parseInt(currentValue));
+              updateProduct.call(this,productId, oldValue, currentValue);
+            }
+            }, 1000);
+          });
+          $(this).children('.plus-container').click(() => {
+            setTimeout(() => {
+            const oldValue = $(this).children('.hidden-quantity').val();
+            const currentValue = parseInt($(this).children('.input-number').val()) + 1;
+            if(currentValue <= 5){
+              $(this).children('.input-number').val(parseInt(currentValue));
+              updateProduct.call(this,productId, oldValue, currentValue);
+            }
+            }, 1000);
+            
+          });
+
+        })
+        deliver.change(function() {
+          let isChecked = $('.shipping-checkbox').prop('checked');
+          if(!isChecked){
+            $('.address-part').addClass('disable')
+          }
+          else {
+             $('.address-part').removeClass('disable')
+          }
+        })
+        discount.click(function() {
+          if(!$(this).children('label').hasClass('changed')){
+            $(this).children('label').addClass('changed');
+          } else {
+            $(this).children('label').removeClass('changed');
+          }
+          $('.discount-input').toggle();
+        })
+          paymentBtn.click(function() {
+            validator();
+            $('#staticBackdrop').modal('show');
+          })
+      })
+      
+
+      function updateProduct(productId, oldValue, currentValue){
+        let quantityChanged = currentValue - oldValue;
+
+        if(oldValue !== currentValue && currentValue <=5){
+          $.ajax({
+          type: "patch",
+          url: "/cart/api/cart/UpdateProduct",
+          dataType: "json",
+          data: {
+            productId, quantity: currentValue
+          },
+          success: (data) => {
+            if(data) {
+              $(this).children('.hidden-quantity').val(currentValue); 
+              $('.total-quantity').html(data.totalQuantity);
+              $('.total-price').html(moneyFormater(data.total) + "<sup>đ</sup>")
+            }
+            
+          },
+          
+          })
+        }
+      }
+
+      function removeProduct(productId)
+      {
+        $.ajax({
+          type: "delete",
+          url: "/cart/api/cart/RemoveProduct",
+          dataType: "json",
+          data: {
+            productId
+          },
+          success: (data) => {
+              if(!data.empty){
+                $(this).remove();
+                $('.total-quantity').html(data.totalQuantity);
+                $('.total-price').html(moneyFormater(data.total) + "<sup>đ</sup>")
+              }
+              else {
+                location.reload();
+              }
+            }
+          
+          })
+      }
+      function validator() {
+        const gender = $('input[name="gender"]:checked').val();
+        const deliverWay = $('input[name="deliver-way"]:checked').val();
+        const provincial = $('#provincial').val();
+        const district = $('#district').val();
+        const ward = $('#ward').val();
+        const address = $('input[name="address"]').val();
+        const conditions = $('input[name="conditions"]').map(function(condition) {
+          return $(this).val();
+        }).get();
+        const coupon = $('input[name="coupon"]').val();
+        if(gender, deliverWay, provincial, district, ward, address) {
+          $('$staticBackdrop').show('show');
+        }
+      }
+      function moneyFormater(money) {
+                  return (Math.round(money * 100) / 100).toLocaleString().replace(/,/g,'.');
+      }
+      
+  

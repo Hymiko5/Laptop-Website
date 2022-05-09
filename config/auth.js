@@ -38,7 +38,7 @@ passport.use(new LocalStrategy({
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback",
+    callbackURL: "https://2233-42-114-121-134.ap.ngrok.io/auth/google/callback",
   },
   function(accessToken, refreshToken, profile, cb) {
     // use the profile info (mainly profile id) to check if the user is register in ur db
@@ -79,7 +79,8 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
   clientID: FACEBOOK_APP_ID,
   clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  // callbackURL: "http://localhost:3000/auth/facebook/callback",
+  callbackURL: "https://2233-42-114-121-134.ap.ngrok.io/auth/facebook/callback",
   profileFields: ['id', 'displayName', 'email', 'friends', 'first_name', 'last_name', 'middle_name', 'gender', 'link', 'photos']
 },
 function(accessToken, refreshToken, profile, cb) {

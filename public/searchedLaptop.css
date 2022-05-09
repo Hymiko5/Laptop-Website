@@ -1,0 +1,21 @@
+.report_text h1 {
+  font-size: 18px;
+  color: #000;
+  display: inline;
+}
+.more-btn {
+  width: 300px;
+  color: white;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.more-btn::after {
+  content: "";
+  border-top: 6px solid #fff;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+
+}

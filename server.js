@@ -1,12 +1,14 @@
 'use strict';
 const express     = require('express');
 const bodyParser  = require('body-parser');
+const cors        = require('cors');
 const expect      = require('chai').expect;
 require('dotenv').config();
 const userRoutes = require('./routes/api');
 const slug = require('mongoose-slug-generator');
 const passport = require('passport');
 const session = require('express-session');
+const moment = require('moment');
 const MongoStore = require('connect-mongo')(session);
 const URI = process.env['MONGO_URI'];
 const store = new MongoStore({ url: URI });
@@ -15,6 +17,7 @@ const helmet = require("helmet");
 var morgan = require('morgan');
 
 let app = express();
+app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // app.use(helmet());
@@ -37,6 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session())
 app.use(function(req, res, next) {
     res.locals.user = req.user || null;
+    res.locals.moment = moment;
     next();
 })
 

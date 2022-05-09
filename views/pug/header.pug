@@ -21,10 +21,11 @@
   .col-lg-2
     .giohang
       span.fas.fa-shopping-bag
-      |                 Gi&#x1ECF; h&agrave;ng (0)
+      a.shopping-cart(href='/cart')
+        |  Gi&#x1ECF; h&agrave;ng (0)
 
 nav.navbar.navbar-expand-xl.navbar-dark.bg-dark
-  a.navbar-brand(href='#')
+  a.navbar-brand(href='/laptop-ldp')
     i.fa.fa-cube
     | Brand
     b Name
@@ -32,13 +33,48 @@ nav.navbar.navbar-expand-xl.navbar-dark.bg-dark
     span.navbar-toggler-icon
   // Collection of nav links, forms, and other content for toggling
   #navbarCollapse.collapse.navbar-collapse.justify-content-start
-    form.navbar-form.form-inline
+    form.navbar-form.form-inline#search-form(action="/tim-kiem" method="get")
       .input-group.search-box
-        input#search.form-control(type='text' placeholder='Search here...')
+        input#search.form-control(type='text' name='keyword' placeholder='Search here...' required)
         span.input-group-addon
-          i.fas.fa-search
+          button.noneBorder-btn(type='submit')
+            i.fas.fa-search
+        //- .container
+        .product-dropdown.disable
+        //-   // end shopping-cart-header
+        //-   ul.autocomplete-items
+        //-     li.clearfix
+        //-       a.d-flex(href='#')
+        //-         .item-img
+        //-           img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg' alt='item1')
+        //-         .item-detail
+        //-           h4.item-name Sony DSC-RX100M III
+        //-           .item-installment Online giá rẻ
+        //-           span.item-onlinePrice 28.490.000đ
+        //-           span.item-price 28.990.000đ
+        //-           .item-gift Quà 550.000đ
+        //-     li.clearfix
+        //-       a.d-flex(href='#')
+        //-         .item-img
+        //-           img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg' alt='item1')
+        //-         .item-detail
+        //-           h4.item-name KS Automatic Mechanic...
+        //-           .item-installment Online giá rẻ
+        //-           span.item-onlinePrice 28.490.000đ
+        //-           span.item-price 28.990.000đ
+        //-           .item-gift Quà 550.000đ
+        //-     li.clearfix
+        //-       a.d-flex(href='#')
+        //-         .item-img
+        //-           img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg' alt='item1')
+        //-         .item-detail
+        //-           h4.item-name Kindle, 6&quot; Glare-Free To...
+        //-           .item-installment Online giá rẻ
+        //-           span.item-onlinePrice 28.490.000đ
+        //-           span.item-price 28.990.000đ
+        //-           .item-gift Quà 550.000đ
     .navbar-nav.ml-auto
-      a.nav-item.nav-link.active(href='#')
+      a.nav-item.nav-link.active(href='/laptop-ldp')
         i.fa.fa-home
         span Home
       .nav-item.dropdown
@@ -66,18 +102,82 @@ nav.navbar.navbar-expand-xl.navbar-dark.bg-dark
             b.caret
           .dropdown-menu
             a.dropdown-item(href='#')
-              i.fa.fa-user-o
+              i.fas.fa-address-card
               |  Profile
             a.dropdown-item(href='#')
-              i.fa.fa-calendar-o
+              i.fas.fa-calendar
               |  Calendar
             a.dropdown-item(href='#')
-              i.fa.fa-sliders
+              i.fas.fa-cog
               |  Settings
             .divider.dropdown-divider
             a.dropdown-item(href='/logout')
-              i.fas.fa-sign-out
+              i.fas.fa-sign-out-alt
               |  Logout
         else
           a.btn.btn-secondary(href='/login')
             span Login
+
+script.
+  $(document).ready(function() {
+  const search = $('#search');
+  const productDropdown = $('.product-dropdown');
+  search.on('keyup',function() {
+    const keywords = search.val();
+    if(keywords) {
+      $.ajax({
+          type: "get",
+          url: "/Common/SuggestSearch",
+          dataType: "json",
+          data: {
+            keywords
+          },
+          success: (data) => {
+            if(data.laptopTypes.length > 0 || data.laptops.length > 0){
+              productDropdown.html(
+                  '<ul class="autocomplete-items">'
+                  + data.laptopTypes.map(laptopType => {
+                    if(laptopType.name === "Macbook"){
+                      return `<li><a class="blue-anchor" href="/laptop-apple-macbook">${laptopType.name}</a></li>`;
+                    }
+                    else {
+                      return `<li><a class="blue-anchor" href="/laptop?g=${laptopType.g}">${laptopType.name}</a></li>`;
+                    }
+                    }).join("") + '<div class="suggested-product">Sản phẩm gợi ý</div><hr />'
+                    + data.laptops.map(laptop => {
+                  {
+                  let result = `<li class="clearfix"><a class="d-flex" href="/laptop/${laptop.slug}">
+                <div class="item-img"><img src="${laptop.thumnail[0]}" alt="${laptop.thumnail[0]}" /></div>
+                <div class="item-detail">
+                <h4 class="item-name">${laptop.laptopName}</h4>`;
+                  if(laptop.installment && laptop.installment != ""){
+                    result += `<div class="item-installment">${laptop.installment}</div>`;
+                  }
+                  if(laptop.onlinePrice || laptop.onlinePrice != 0) {
+                    result += `<span class="item-onlinePrice font-bold">${laptop.onlinePrice}<sup>đ</sup></span>
+                                <del class="item-price del-price">${laptop.price}<sup>đ</sup></del>`
+                  }
+                  else {
+                    result += `<span class="item-price font-bold">${laptop.price}<sup>đ</sup></span>`
+                  }
+                  if(laptop.gift.amount) {
+                    result += `<div class="item-gift">Quà <span class="font-bold">550.000đ</span></div>`
+                  }
+                  result += "</div></a></li>"
+                  return result;
+                }
+                }).join("") + '</ul>'
+                );
+                productDropdown.removeClass("disable");
+            }
+            else {
+              productDropdown.html("");
+              productDropdown.addClass("disable");
+            }
+            
+          
+    }
+  })
+    }
+  })
+  })

@@ -10,7 +10,7 @@
         "./server.js",
         "./routes/*",
         "./public/*",
-        "./controllers/SiteController.js",
+        "./controllers/*",
         "./models/*"
     ],
     "env": {

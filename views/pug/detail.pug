@@ -43,130 +43,134 @@
           .img-item
             a(href='#' data-id='1')
               img(src='../public/black-laptop.jpg' alt='laptop image')
-          
-        .insurance
-          .policy 
-            ul.policy-list.d-flex.justify-content-between.flex-wrap
-              li.icon
-                i.fas.fa-dumpster
-                p="Bộ sản phẩm gồm: " + laptop.policy.guide
-              
-    .product-imgs
-      .product-info
-        h5 Thông tin sản phẩm
-        each promotion in laptop.laptopDetail.promotion
-          h5=promotion
-        each detail in laptop.laptopDetail.detail
-          if detail.img
-            img(src=detail.img ).info-img
-          else
-            p=detail
-          
-      .more
-        button.info-btn Xem thêm
-      .rating
-        h5="Đánh giá " + laptop.laptopName
-        if laptop.rate.rateNumber != 0
-          - n = (Math.round(laptop.rate.stars*2)/2);
-          .product-rating
-            each _, i in Array(5)
-              if n == 0.5
-                i.fas.fa-star-half-alt
-                - n = 0
-              else if n > 0 && n != 0.05
-                - n = n - 1
-                i.fas.fa-star
-              else
-                i.fas.fa-star.star-o
-            a(href="#")=laptop.rate.rateNumber
-        .container.mt-5.mb-5
-          .d-flex.row
-            .d-flex.flex-column
-              .d-flex.flex-row.align-items-center.text-left.comment-top.p-2.bg-white.border-bottom.px-4
-                  .d-flex.flex-row.align-items-center.align-content-center.post-title
-                    span.bdge.mr-1 video
-                    span.mr-2.comments=laptop.comments.length + " comments"
-                    span.mr-2.dot
-                    span=laptop.comments.updatedAt
-              .coment-bottom.bg-white.p-2.px-4(action="POST")
-                if user 
-                  form.d-flex.flex-row.add-comment-section.mt-4.mb-4(action="POST") 
-                    img.img-fluid.img-responsive.rounded-circle.mr-2(src=user.photo||'/public/avatar_author.jpg' width='38')
-                    input.form-control.mr-3(type='text' placeholder='Add comment')
-                    button.btn.btn-primary(type='button') Comment
-                each comment in laptop.comments
-                  .commented-section.mt-2
-                    .d-flex.flex-row.align-items-center.commented-user
-                      h5.mr-2=comment.user.userName
-                      span.dot.mb-1
-                      span.mb-1.ml-2=comment.updatedAt
-                    .comment-text-sm
-                      span=comment.content
-                    .reply-section
-                      .d-flex.flex-row.align-items-center.voting-icons
-                        i.fa.fa-sort-up.fa-2x.mt-3.hit-voting
-                        i.fa.fa-sort-down.fa-2x.mb-3.hit-voting
-                        span.ml-2 10
-                        span.dot.ml-2
-                        h6.ml-2.mt-1 Reply
+        if laptop.policy
+          .insurance
+            .policy 
+              ul.policy-list.d-flex.justify-content-between.flex-wrap
+                li.icon
+                  i.fas.fa-dumpster
+                  p="Bộ sản phẩm gồm: " + laptop.policy.guide
+    if laptop.isBusiness          
+      .product-imgs
+        .product-info
+          h5 Thông tin sản phẩm
+          each promotion in laptop.laptopDetail.promotion
+            h5=promotion
+          each detail in laptop.laptopDetail.detail
+            if detail.img
+              img(src=detail.img ).info-img
+            else
+              p=detail
+            
+        .more
+          button.info-btn Xem thêm
+        .rating
+          h5="Đánh giá " + laptop.laptopName
+          if laptop.rate.rateNumber != 0
+            - n = (Math.round(laptop.rate.stars*2)/2);
+            .product-rating
+              each _, i in Array(5)
+                if n == 0.5
+                  i.fas.fa-star-half-alt
+                  - n = 0
+                else if n > 0 && n != 0.05
+                  - n = n - 1
+                  i.fas.fa-star
+                else
+                  i.fas.fa-star.star-o
+              a(href="#")=laptop.rate.rateNumber
+          .container.mt-5.mb-5
+            
+              .d-flex.flex-column
+                .d-flex.flex-row.align-items-center.text-left.comment-top.p-2.bg-white.border-bottom.px-4
+                    .d-flex.flex-row.align-items-center.align-content-center.post-title
+                      span.bdge.mr-1 video
+                      span.mr-2.comments=laptop.comments.length + " comments"
+                      span.mr-2.dot
+                      span=laptop.comments.updatedAt
+                .coment-bottom.bg-white.p-2.px-4
+                  if user 
+                    form.d-flex.flex-row.add-comment-section.mt-4.mb-4#comment-form(method='POST' action='/product/comment')
+                      img.img-fluid.img-responsive.rounded-circle.mr-2(src=user.photo||'/public/avatar_author.jpg' width='38')
+                      input(type='hidden' name='laptop' class='laptop' value=laptop._id)
+                      input.form-control.mr-3(type='text' class='content' placeholder='Add comment' name='content' class='content')
+                      button.btn.btn-primary(type='submit') Comment
+                    #comment-box
+                      each comment in laptop.comments
+                        .commented-section.mt-2.comment-box
+                          .d-flex.flex-row.align-items-center.commented-user
+                            img.rounded-circle(src=user.photo width='48' height='48')
+                            .d-flex.flex-column.ml-4
+                              h6.mr-2.font-weight-bold=comment.user.userName
+                              span=moment(comment.updatedAt).fromNow()
+                          .comment-text-sm
+                            span=comment.content
+                          .reply-section
+                            .d-flex.flex-row.align-items-center.voting-icons
+                              i.fa.fa-sort-up.fa-2x.mt-3.hit-voting
+                              i.fa.fa-sort-down.fa-2x.mb-3.hit-voting
+                              span.ml-2 10
+                              span.dot.ml-2
+                              h6.ml-2.mt-1 Reply
         
 
      
     // card right
     .product-content
-      .product-price
-        .price-wrap
-          | Giá: 
-          if laptop.onlinePrice != 0
-            .new-price
-              span=laptop.onlinePrice
-              sup.under đ
-            span *
-            .last-price
-              span=laptop.price
-              sup.under đ
-          else
-            .new-price
-              span=laptop.price
-              sup.under đ
-      .product-detail
-        table.table.table-bordered.m-2
-          tbody
-            if laptop.gift
+      if laptop.isBusiness
+        .product-price
+          .price-wrap
+            | Giá: 
+            if laptop.onlinePrice != 0
+              .new-price
+                span=laptop.onlinePrice
+                sup.under đ
+              span *
+              .last-price
+                span=laptop.price
+                sup.under đ
+            else
+              .new-price
+                span=laptop.price
+                sup.under đ
+        .product-detail
+          table.table.table-bordered.m-2
+            tbody
+              if laptop.gift
+                tr
+                    td
+                      h5="Khuyến mãi trị giá " + laptop.gift.amount
+                      p="Giá và khuyến mãi dự kiến áp dụng đến " + laptop.gift.expire
+                tr
+                  if laptop.gift.items.length > 0
+                    td
+                      - n = 1
+                      each item in laptop.gift.items
+                        p=`${n}. ${item.title}`
+                        - n++;
               tr
                 td
-                  h5="Khuyến mãi trị giá " + laptop.gift.amount
-                  p="Giá và khuyến mãi dự kiến áp dụng đến " + laptop.gift.expire
+                  if laptop.gift.items.length > 0
+                    div Quà khuyến mãi
+                      .gift-wrap.d-flex.justify-content-around
+                        each item in laptop.gift.items
+                          button.promotion
+                            figure
+                              img(src=item.img)
+                            .promotion-info
+                              div=item.title
               tr
-                if laptop.gift.items.length > 0
-                  td
-                    - n = 1
-                    each item in laptop.gift.items
-                      p=`${n}. ${item.title}`
-                      - n++;
-            tr
-              td
-                div Quà khuyến mãi
-                if laptop.gift.items.length > 0
-                  .gift-wrap.d-flex.justify-content-around
-                    each item in laptop.gift.items
-                      button.promotion
-                        figure
-                          img(src=item.img)
-                        .promotion-info
-                          div=item.title
-            tr
-              td
-                p (*) Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%)
-                
+                td
+                  p (*) Giá hoặc khuyến mãi không áp dụng trả góp lãi suất đặc biệt (0%, 0.5%, 1%)
+                  
 
-
-      .purchase-info
-        input(type='number' min='0' value='1')
-        button.btn(type='button')
-          | Add to Cart 
-          i.fas.fa-shopping-cart
-        button.btn(type='button') Compare
+        .purchase-info
+          button.btn(type='button' onclick=`setTimeout(addToCart("${laptop._id}"),1000)`)
+            | Add to Cart
+            i.fas.fa-shopping-cart
+          button.btn(type='button') Compare
+      else
+        h2.sold-out HẾT HÀNG TẠM THỜI
       .social-links
         p Share At: 
         a(href='#')
@@ -209,7 +213,7 @@ if laptop.plugin.length > 0
                             .col-lg-3.my-4
                               .card.plugin-list
                                 a(href='#')
-                                  img.bg-success.lazyload(data-src=plugin.image height='auto' width='98%' )
+                                  img.bg-success.lazyload(data-src=plugin.image src=plugin.image height='auto' width='98%' )
                                   .card-body.p-2.my-auto(style='text-align: left;')
                                     a.text-dark=plugin.name
                                     br
@@ -307,91 +311,92 @@ if laptop.relateProduct.length > 0
         .col-md-12
           h2
             | Phụ kiện thường mua cùng
-          //- #myCarousel.carousel.slide(data-ride='carousel' data-interval='0')
-          //-   // Wrapper for carousel items
-          //-   - product_size = 4
-          //-   .carousel-inner
-          //-     - for (let i = 0; i < laptop.plugin.length; i+=product_size){
-          //-       - subArray = laptop.plugin.slice(i, i + product_size)
-          //-         if i == 0
-          //-           .carousel-item.active
-          //-             .row
-          //-               each product in subArray
-          //-                   .col-sm-3.carousel-border
-          //-                     .thumb-wrapper
-          //-                       .img-box
-          //-                         img.img-fluid(src= alt='')
-          //-                       .thumb-content
-          //-                         h4 Apple iPad
-          //-                         p.item-price
-          //-                           strike $400.00
-          //-                           span $369.00
-          //-                         .star-rating
-          //-                           ul.list-inline
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star.star-o
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star.star-o
-          //-                         a.btn.btn-primary(href='#') Add to Cart
-                          
-          //-         else
-          //-           .carousel-item
-          //-             .row
-          //-               each plugin in subArray
-          //-                   .col-sm-3.carousel-border
-          //-                     .thumb-wrapper
-          //-                       .img-box
-          //-                         img.img-fluid(src='/examples/images/products/ipad.jpg' alt='')
-          //-                       .thumb-content
-          //-                         h4 Apple iPad
-          //-                         p.item-price
-          //-                           strike $400.00
-          //-                           span $369.00
-          //-                         .star-rating
-          //-                           ul.list-inline
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star.star-o
-          //-                             li.list-inline-item
-          //-                               i.fas.fa-star.star-o
-          //-                         a.btn.btn-primary(href='#') Add to Cart
-                          
 
-                
-              
-
-          //-     - }
-          
-            
-          //- // Carousel controls
-          //- a.carousel-control-prev(href='#myCarousel' data-slide='prev')
-          //-   i.fa.fa-angle-left
-          //- a.carousel-control-next(href='#myCarousel' data-slide='next')
-          //-   i.fa.fa-angle-right
-              
 script.
-  const images = document.querySelectorAll(".lazyload");
-  let imageOptions = {};
-  let observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-  if(!entry.isIntersecting) return;
-  const image = entry.target;
-  const newURL = image.getAttribute('data-src');
-  image.src = newURL;
-  observer.unobserve(image);
-  })
-  }, imageOptions);
-  images.forEach(image => {
-  observer.observe(image)
-  })
+      $(document).ready(function() {
+      $('#comment-form').submit(function(e) {
+      e.preventDefault();
+      if($('.content').val() != ''){ 
+      const laptop = $('.laptop').val();
+      const content = $('.content').val();
+      $.ajax({
+      type: "post",
+      url: "/product/comment",
+      dataType: "json",
+      data: {
+       laptop, content
+      },
+      success: function(data) {
+      if (data.comment) {
+      postComment(data.comment);
+      }
+      }
+      })
+      }
+      })
+      })
+      function postComment(comment) {
+      const html = `<div class="commented-section mt-2 comment-box">
+  <div class="d-flex flex-row align-items-center commented-user"><img class="rounded-circle" src=${comment.user.photo} width="48" height="48"/>
+    <div class="d-flex flex-column ml-4">
+      <h6 class="mr-2 font-weight-bold">${comment.user.userName}</h6><span>${moment(comment.updatedAt).fromNow()}</span>
+    </div>
+  </div>
+  <div class="comment-text-sm"><span>${comment.content}</span></div>
+  <div class="reply-section">
+    <div class="d-flex flex-row align-items-center voting-icons"><i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">10</span><span class="dot ml-2"></span>
+      <h6 class="ml-2 mt-1">Reply</h6>
+    </div>
+  </div>
+  </div>`;
+      
+      $('#comment-box').prepend(html);
+      $('#content').text('');
+      }
+      async function addToCart(productId){
+        let isPassed = false;
+        await $.ajax({
+          type: "post",
+          url: "/cart/api/product/GetProduct",
+          dataType: "json",
+          data: {
+            productId
+          },
+          success: function(data) {
+            if(data.status === "passed")isPassed = true;
+            else if(data.status === 302)window.location.href = '/login';
+            
+          }
+        })
+        if(isPassed){
+          $.ajax({
+          type: "post",
+          url: "/cart/api/cart/AddProduct",
+          dataType: "json",
+          data: {
+            productId
+          },
+          success: function(data) {
+            console.log(data.status);
+          },
+          
+          })
+        }
+        
+      }
+
+//- script.
+//-   const images = document.querySelectorAll(".lazyload");
+//-   let imageOptions = {};
+//-   let observer = new IntersectionObserver((entries, observer) => {
+//-   entries.forEach(entry => {
+//-   if(!entry.isIntersecting) return;
+//-   const image = entry.target;
+//-   const newURL = image.getAttribute('data-src');
+//-   image.src = newURL;
+//-   observer.unobserve(image);
+//-   })
+//-   }, imageOptions);
+//-   images.forEach(image => {
+//-   observer.observe(image)
+//-   })
